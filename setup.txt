@@ -4,5 +4,6 @@ Buenas tardes, aquí el paso a paso para ejecutar el proyecto
 - Ingrese a phpmyadmin y cree una base de datos, de preferencia de nombre laravelcourse11
 - Modifique el archivo .env con los datos de su base de datos mysql
 - Use "php artisan migrate" para crear las tablas de la base de datos
-- Use "php artisan serve" desde la ruta /worksheet-01 para iniciar el proyecto 
+- Use "php artisan serve" desde la ruta /payment para iniciar el proyecto 
 - La ruta inicial a la que debe acceder es "/" esto lo llevara al home de la aplicación
+- La actividad 5 se muestra en la actividad 4 (List Payments)

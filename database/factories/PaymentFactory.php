@@ -12,11 +12,10 @@ class PaymentFactory extends Factory
     public function definition(): array  
     {  
         return [  
-            'id' => $this->faker->uuid, // Genera un ID único (puedes usar string o un ID específico)  
-            'method' => $this->faker->randomElement(['credit_card', 'paypal', 'bank_transfer']), // Métodos de pago  
-            'status' => $this->faker->randomElement(['pending', 'completed', 'failed']), // Estados del pago  
-            // Suponiendo que "order" es una relación, puedes generar una referencia a una orden:  
-            'order_id' => \App\Models\Order::factory(), // Suponiendo que tienes un modelo Order  
+            'id' => $this->faker->uuid,
+            'method' => $this->faker->randomElement(['credit_card', 'paypal', 'bank_transfer']),
+            'status' => $this->faker->randomElement(['pending', 'completed', 'failed']), 
+            'order_id' => \App\Models\Order::factory(),   
         ];  
     }  
 }
