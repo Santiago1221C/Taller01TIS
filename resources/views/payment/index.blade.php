@@ -2,13 +2,13 @@
 <html lang="es">  
 <head>  
     <meta charset="UTF-8">  
-    <title>{{ $title }}</title>  
+    <title>{{ $viewData['title'] }}</title>  
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">  
 </head>  
 <body>  
     <div class="container">  
-        <h1>{{ $title }}</h1>  
-        <h2>{{ $subtitle }}</h2>  
+        <h1>{{ $viewData['title'] }}</h1>  
+        <h2>{{ $viewData['subtitle'] }}</h2>  
 
         @if (session('success'))  
             <div class="alert alert-success">  
@@ -16,31 +16,31 @@
             </div>  
         @endif  
 
-        <a href="{{ route('payment.create') }}" class="btn btn-primary">Crear Pago</a>  
+        <a href="{{ route('payment.create') }}" class="btn btn-primary">Create Payment</a>  
         <table class="table">  
             <thead>  
                 <tr>  
                     <th>ID</th>  
-                    <th>Método</th>  
-                    <th>Estado</th>  
-                    <th>ID de Orden</th>  
-                    <th>Acciones</th>  
+                    <th>Method</th>  
+                    <th>Status</th>  
+                    <th>Order</th>  
+                    <th>Actions</th>  
                 </tr>  
             </thead>  
             <tbody>  
-                @foreach ($payments as $payment)  
+                @foreach ($viewData['payments'] as $payment)  
                     <tr>  
                         <td>{{ $payment->id }}</td>  
                         <td>{{ $payment->method }}</td>  
                         <td>{{ $payment->status }}</td>  
-                        <td>{{ $payment->order_id }}</td>  
+                        <td>{{ $payment->order }}</td>  
                         <td>  
                             <form action="{{ route('payment.destroy', $payment->id) }}" method="POST" style="display:inline;">  
                                 @csrf  
                                 @method('DELETE')  
-                                <button class="btn btn-danger">Eliminar</button>  
+                                <button class="btn btn-danger">Delete</button>  
                             </form>  
-                            <a href="{{ route('payment.show', $payment->id) }}" class="btn btn-info">Detalles</a>  
+                            <a href="{{ route('payment.show', $payment->id) }}" class="btn btn-info">Details</a>  
                         </td>  
                     </tr>  
                 @endforeach  

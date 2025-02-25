@@ -10,18 +10,17 @@
     @endif  
 
     <h1>Payment Details</h1>  
-    <p><strong>ID:</strong> {{ $payment->id }}</p>  
-    <p><strong>Method:</strong> {{ $payment->payment_method }}</p>   
-    <p><strong>Status:</strong> {{ $payment->status }}</p>  
-    <p><strong>Order ID:</strong> {{ $payment->order_id }}</p>  
+    <p><strong>ID:</strong> {{ $viewData['payments']->id }}</p>    
+    <p><strong>Method:</strong> {{ $viewData['payments']->method }}</p>   
+    <p><strong>Status:</strong> {{ $viewData['payments']->status }}</p>  
+    <p><strong>Order:</strong> {{ $viewData['payments']->order }}</p>    
 
-    <form action="{{ route('payment.destroy', $payment->id) }}" method="POST">  
+    <form action="{{ route('payment.destroy', $viewData['payments']->id) }}" method="POST">  
         @csrf  
         @method('DELETE')  
         <button type="submit" class="btn btn-danger">Delete Payment</button>  
     </form>  
 
-    
-    <a href="{{ route('payment.index') }}" class="btn btn-secondary mt-3">Back to Payment List</a>  
+    <a href="{{ route('payment.index') }}" class="btn btn-secondary mt-3">Return to Payment List</a>  
 </div>  
 @endsection

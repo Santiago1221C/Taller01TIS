@@ -2,13 +2,13 @@
 <html lang="es">  
 <head>  
     <meta charset="UTF-8">  
-    <title>{{ $title }}</title>  
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}"> 
+    <title>{{ $viewData['title'] }}</title>  
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">   
 </head>  
 <body>  
     <div class="container">  
-        <h1>{{ $title }}</h1>  
-        <h2>{{ $subtitle }}</h2>  
+        <h1>{{ $viewData['title'] }}</h1>  
+        <h2>{{ $viewData['subtitle'] }}</h2>  
 
         @if ($errors->any())  
             <div class="alert alert-danger">  
@@ -23,7 +23,7 @@
         <form action="{{ route('payment.store') }}" method="POST">  
             @csrf  
             <div class="form-group">  
-                <label for="method">Payment Method</label>  
+                <label for="method">Method</label>  
                 <input type="text" name="method" id="method" class="form-control" required>  
             </div>  
             <div class="form-group">  
@@ -31,8 +31,8 @@
                 <input type="text" name="status" id="status" class="form-control" required>  
             </div>  
             <div class="form-group">  
-                <label for="order_id">Order ID</label>  
-                <input type="text" name="order_id" id="order_id" class="form-control" required>  
+                <label for="order">Order</label>  
+                <input type="text" name="order" id="order" class="form-control" required>  
             </div>  
             <button type="submit" class="btn btn-primary">Create Payment</button>  
         </form>  

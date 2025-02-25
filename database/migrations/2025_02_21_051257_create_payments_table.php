@@ -13,7 +13,7 @@ class CreatePaymentsTable extends Migration
             $table->id(); 
             $table->string('method')->nullable(); 
             $table->string('status'); 
-            $table->string('order_id');   
+            $table->string('order');   
             $table->timestamps();  
         });  
     }  

@@ -11,20 +11,21 @@ class PaymentController extends Controller
 {  
     public function index(): View  
     {  
-        $payments = Payment::all();  
-        return view('payment.index', [  
-            'payments' => $payments,  
-            'title' => 'List of Payments',  
-            'subtitle' => 'Payment details'  
-        ]);  
-    }  
+    $payments = Payment::all();  
+    $viewData = [];  
+    $viewData['title'] = 'Lista de Pagos'; // Agrega un título  
+    $viewData['subtitle'] = 'Pagos realizados'; // Agrega un subtítulo  
+    $viewData['payments'] = $payments; // Asegúrate de pasar los pagos  
+
+    return view('payment.index')->with('viewData', $viewData); // Cambiado a payment.index  
+    }
 
     public function create(): View  
     {  
-        return view('payment.create', [  
-            'title' => 'Create Payment',  
-            'subtitle' => 'Add a new payment'  
-        ]);  
+        $viewData = [];
+        $viewData['title'] = '';
+        $viewData['subtitle'] = '';
+        return view('payment.create')->with('viewData', $viewData);
     }  
 
     public function store(Request $request)  
@@ -32,19 +33,19 @@ class PaymentController extends Controller
         $request->validate([  
             'method' => 'required|string',  
             'status' => 'required|string',  
-            'order_id' => 'required|string'  
+            'order' => 'required|string'  
         ]);  
 
         Payment::create([  
             'method' => $request->method,  
             'status' => $request->status,  
-            'order_id' => $request->order_id  
+            'order' => $request->order  
         ]);  
 
         return redirect()->route('payment.index')->with('success', 'Payment created correctly.');  
     }  
 
-    public function destroy($id)  
+    public function destroy(String $id)  
     {  
          
         $payment = Payment::find($id);  
@@ -61,9 +62,12 @@ class PaymentController extends Controller
         return redirect()->route('payment.index')->with('success', 'Payment deleted correctly');  
     }  
 
-    public function show($id)  
+    public function show(String $id)  
     {  
         $payment = Payment::findOrFail($id);
-        return view('payment.show', compact('payment'));
+
+        $viewData = [];
+        $viewData ['payments'] = $payment;
+        return view('payment.show')->with('viewData', $viewData);
     }
 }
